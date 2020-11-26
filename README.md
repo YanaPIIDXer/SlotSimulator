@@ -1,0 +1,2 @@
+# SlotSimulator
+パチスロのシミュレータ
