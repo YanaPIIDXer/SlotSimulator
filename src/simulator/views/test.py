@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 import matplotlib.pyplot as plt
 import io
+import machine
 
 def plt_to_svg():
     buf = io.BytesIO()
