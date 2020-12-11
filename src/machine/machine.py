@@ -3,13 +3,14 @@ import random
 # 小役
 class Role(object):
     # コンストラクタ
-    def __init__(self, name, value):
+    def __init__(self, id, name, value):
+        self.__id = id
         self.__name = name
         self.__value = value
 
     # データをTupleで取得
     def get(self):
-        return (self.__name, self.__value)
+        return (self.__id, self.__name, self.__value)
 
 # スロット基底クラス
 class Machine(object):
@@ -38,8 +39,14 @@ class Machine(object):
     def simulate(self):
         index = random.randrange(65535)
         role = self.__table[index]
-        if role == None: role = ("ハズレ", 0)
+        if role == None: role = (0, "ハズレ", 0)
+        id, name, value = role
+        on_simulate(id)
         return role
+
+    # 引いた役によって何かやる場合に使うメソッド
+    def on_simulate(self, id):
+        pass
 
     # 設定値取得
     def setting_value():
