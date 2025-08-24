@@ -49,8 +49,11 @@ def single_simulate(roles: list[dict], start_game: int):
 def main():
   games = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450]
   for start in games:
-    result = single_simulate(im_6_roles, start)
-    print(f'start: {start}', f'result: {result}')
+    total = 0
+    num = 1000
+    for i in range(num):
+      total += single_simulate(im_6_roles, start)
+    print(f'start: {start}', f'result: {total / num}')
 
 if __name__ == '__main__':
   main()
