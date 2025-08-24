@@ -34,7 +34,7 @@ def make_choices(roles: list[dict]):
   choices += [{'value': 0, 'reset': False} for i in range(65536 - len(choices))]
   return choices
 
-def simulate(roles: list[dict], start_game: int):
+def single_simulate(roles: list[dict], start_game: int):
   medals = 0
   current_game = start_game
   choices = make_choices(roles)
@@ -43,11 +43,11 @@ def simulate(roles: list[dict], start_game: int):
     medals += result['value'] - 3
     current_game += 1
     if result['reset']:
-      current_game = 0
+      return medals
   return medals
 
 def main():
-  result = simulate(im_6_roles, 0)
+  result = single_simulate(im_6_roles, 0)
   print(f'result: {result}')
 
 if __name__ == '__main__':
