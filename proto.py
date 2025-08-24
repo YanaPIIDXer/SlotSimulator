@@ -1,4 +1,5 @@
 import random
+import math
 
 def make_role(name: str, value: int, denom: float, reset: bool):
   return {'name': name, 'value': value, 'denom': denom, 'reset': reset}
@@ -40,15 +41,16 @@ def single_simulate(roles: list[dict], start_game: int):
   choices = make_choices(roles)
   total_in = 0
   total_out = 0
-  for i in range(8000):
+  is_end = False
+  while not is_end:
     result = pick(choices, current_game)
     total_in += 3
     total_out += result['value']
     medals += result['value'] - 3
     current_game += 1
     if result['reset']:
-      return medals, total_out / total_in
-  return medals, total_out / total_in
+      is_end = True
+  return medals, math.floor(total_out / total_in * 1000) / 10
 
 def main():
   games = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450]
@@ -60,7 +62,7 @@ def main():
       result, payout = single_simulate(im_1_roles, start)
       total += result
       total_payout += payout
-    print(f'start: {start}', f'result: {total / num}', f'payout: {total_payout / num * 100}')
+    print(f'start: {start}', f'result: {total / num}', f'payout: {total_payout / num}')
 
 if __name__ == '__main__':
   main()

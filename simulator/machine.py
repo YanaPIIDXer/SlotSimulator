@@ -62,6 +62,17 @@ class Machine(ABC):
     '''
     self.__games = value
 
+  def simulate_single(self, start_games: int):
+    '''
+    １回分のシミュレート施行
+
+    start_games(int): 開始ゲーム数
+    '''
+    self.reset()
+    self.reset_games(start_games)
+    while not self.is_end:
+      self.play()
+
   def end_simulate(self):
     '''
     シミュレート終了フラグを立てる

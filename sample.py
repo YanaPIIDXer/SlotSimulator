@@ -30,12 +30,9 @@ def main():
     total = 0
     total_payout = 0
     for i in range(num):
-      machine.reset_games(start)
-      while not machine.is_end:
-        machine.play()
+      machine.simulate_single(start)
       total += machine.medals
       total_payout += machine.payout
-      machine.reset()
     print(f'start: {start}', f'result: {total / num}', f'payout: {total_payout / num}')
   
 if __name__ == '__main__':
