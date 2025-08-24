@@ -47,8 +47,10 @@ def single_simulate(roles: list[dict], start_game: int):
   return medals
 
 def main():
-  result = single_simulate(im_6_roles, 0)
-  print(f'result: {result}')
+  games = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450]
+  for start in games:
+    result = single_simulate(im_6_roles, start)
+    print(f'start: {start}', f'result: {result}')
 
 if __name__ == '__main__':
   main()
