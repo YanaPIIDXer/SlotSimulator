@@ -21,7 +21,7 @@ im_6_roles = [
 
 def pick(choices: list[int], game: int):
   if game == 500:
-    return {'value': 1000, 'reset': True}
+    return {'value': 10000, 'reset': True}
   
   i = random.randint(0, 65535)
   return choices[i]
@@ -52,7 +52,7 @@ def main():
     total = 0
     num = 1000
     for i in range(num):
-      total += single_simulate(im_6_roles, start)
+      total += single_simulate(im_1_roles, start)
     print(f'start: {start}', f'result: {total / num}')
 
 if __name__ == '__main__':
