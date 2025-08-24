@@ -76,6 +76,7 @@ class Machine(ABC):
 
     start_games(int): 開始ゲーム数
     '''
+    self.__start_games = start_games
     self.reset()
     self.reset_games(start_games)
     while not self.is_end:
@@ -146,3 +147,10 @@ class Machine(ABC):
     シミュレートが終了しているか
     '''
     return self.__is_end
+
+  @property
+  def start_games(self):
+    '''
+    開始ゲーム数
+    '''
+    return self.__start_games
