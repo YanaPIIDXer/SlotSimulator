@@ -38,22 +38,29 @@ def single_simulate(roles: list[dict], start_game: int):
   medals = 0
   current_game = start_game
   choices = make_choices(roles)
+  total_in = 0
+  total_out = 0
   for i in range(8000):
     result = pick(choices, current_game)
+    total_in += 3
+    total_out += result['value']
     medals += result['value'] - 3
     current_game += 1
     if result['reset']:
-      return medals
-  return medals
+      return medals, total_out / total_in
+  return medals, total_out / total_in
 
 def main():
   games = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450]
   for start in games:
     total = 0
+    total_payout = 0
     num = 1000
     for i in range(num):
-      total += single_simulate(im_1_roles, start)
-    print(f'start: {start}', f'result: {total / num}')
+      result, payout = single_simulate(im_1_roles, start)
+      total += result
+      total_payout += payout
+    print(f'start: {start}', f'result: {total / num}', f'payout: {total_payout / num * 100}')
 
 if __name__ == '__main__':
   main()
