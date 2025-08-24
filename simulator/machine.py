@@ -53,6 +53,14 @@ class Machine(ABC):
     self.__total_out = 0
     self.__games = 0
     self.__is_end = False
+    self.on_reset()
+
+  def on_reset(self):
+    '''
+    リセット時の処理
+    機種特有のリセット
+    '''
+    pass
 
   def reset_games(self, value: int = 0):
     '''
@@ -108,6 +116,7 @@ class Machine(ABC):
     value(int): 追加する値
     '''
     self.__medals += value
+    self.__total_out += value
 
   @property
   def medals(self):
